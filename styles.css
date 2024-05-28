@@ -1,0 +1,156 @@
+@font-face {
+    font-family: 'Onda';
+    src: url('fonts/Onda.ttf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: 'Monument';
+    src: url('fonts/Monument.ttf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+}
+
+body {
+    font-family: 'Onda';
+    color: #DCDDD7;
+    background-color: #1F1828;
+    letter-spacing: -10px;
+    
+}
+
+p {
+    font-size: 90px;
+    letter-spacing: -10px;
+    overflow-wrap: break-word;
+}
+
+input {
+    margin-left: 8rem;
+    margin-top: 2rem;
+    width: 85%;
+    font-family: 'Onda';
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px solid #CF436B;
+    color: #DCDDD7;
+    font-size: 90px;
+    letter-spacing: -10px;
+}
+img{
+    width: 100%;
+    z-index: 999;
+}
+
+.secretos{
+    margin-left: 2rem;
+    display: flex;
+    flex-direction: row;
+    width:90%;
+}
+
+.botones{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+button{
+    color:#DCDDD7;
+    background-color: #CF436B;
+    border: 2px solid #DCDDD7;
+    border-radius: 50px;
+    width: 200px;
+    height: 100px;
+    font-family: 'Monument';
+}
+.publicacion{
+    color:#CF436B;
+    background-color: #DCDDD7;
+    border: 2px solid #CF436B;
+    border-radius: 50px;
+    width: 200px;
+    height: 100px;
+}
+
+#output p {
+    font-size: 90px;
+    color: #CF436B;
+    margin-left: 8rem;
+}
+
+.placeholder-tipografia::placeholder {
+    font-family: 'Monument';
+    letter-spacing: 0px;
+    font-size: 50px;
+    color:#DCDDD7;
+    /* Agrega aquí otras propiedades de la tipografía para el placeholder */
+}
+.nombre{
+    font-family: 'Monument';
+    letter-spacing: 0px;
+    font-size: 50px;
+    color:#DCDDD7;
+}
+.nombre::placeholder{
+    font-family: 'Monument';
+    letter-spacing: 0px;
+    font-size: 50px;
+    color:#DCDDD7;
+}
+
+.name-output{
+    font-family: 'Monument';
+    letter-spacing: 0px;
+}
+
+.galery {
+    width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.caja{
+    height: 200px;
+    width: 200px;
+    display: block;
+    margin: 0 auto;
+
+}
+.caja_mini{
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    
+    .mini{
+         width: 30px;
+        height: 30px;
+        margin: 2px;
+        border-radius: 25px;
+        filter: grayscale(100%);
+        &.active{
+            border: 2px solid red;
+            filter: grayscale(0%);
+        }
+    }
+            
+       
+}
+    
+.controles{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    #izq,#drch{
+         width: 30px;
+        height: 30px;
+        margin: 2px;
+        border-radius: 25px;
+        border: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+   
+}
+

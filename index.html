@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNDERTONE</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <img src="img/portada.jpg" alt="">
+    <div class="secretos">
+        <div class="escribir">
+            <input type="text" id="inputName" placeholder="Escribe tu nombre" class="nombre">
+            <input type="text" id="inputText" placeholder="Escribe tu secreto" class="placeholder-tipografia">
+        </div>
+        <div class="botones">
+            <button id="submitButton">Añadir secreto</button>
+            <button id="clearButton">Borrar todo</button>
+            <a href="undertone.html"><button class="publicacion">Ver publicación</button></a>
+            
+        </div>
+    </div>
+    <div class="output" id="output"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputName = document.getElementById('inputName');
+            const inputText = document.getElementById('inputText');
+            const submitButton = document.getElementById('submitButton');
+            const clearButton = document.getElementById('clearButton');
+            const outputDiv = document.getElementById('output');
+
+            // Remover espacios mientras se escribe
+            function removeSpaces(event) {
+                event.target.value = event.target.value.replace(/\s+/g, '');
+            }
+
+            inputName.addEventListener('input', removeSpaces);
+            inputText.addEventListener('input', removeSpaces);
+
+            // Cargar el contenido almacenado al recargar la página
+            function loadContent() {
+                const storedContent = JSON.parse(localStorage.getItem('outputContent')) || [];
+                storedContent.forEach(entry => {
+                    addContentToOutput(entry.name, entry.text);
+                });
+            }
+
+            // Guardar el contenido en el almacenamiento local
+            function saveContent(name, text) {
+                const storedContent = JSON.parse(localStorage.getItem('outputContent')) || [];
+                storedContent.unshift({ name, text });
+                localStorage.setItem('outputContent', JSON.stringify(storedContent));
+            }
+
+            // Agregar el contenido al div de salida
+            function addContentToOutput(name, text) {
+                let nameParagraph = document.createElement('p');
+                nameParagraph.textContent = name;
+                nameParagraph.classList.add('name-output');
+
+                let textParagraph = document.createElement('p');
+                textParagraph.textContent = text;
+                textParagraph.classList.add('text-output');
+
+                outputDiv.insertBefore(textParagraph, outputDiv.firstChild);
+                outputDiv.insertBefore(nameParagraph, outputDiv.firstChild);
+            }
+
+            // Borrar todo el contenido
+            function clearContent() {
+                localStorage.removeItem('outputContent');
+                outputDiv.innerHTML = '';
+            }
+
+            submitButton.addEventListener('click', function() {
+                let nameValue = inputName.value.trim();
+                let textValue = inputText.value.trim();
+
+                if (nameValue !== '' && textValue !== '') {
+                    addContentToOutput(nameValue, textValue);
+                    saveContent(nameValue, textValue);
+
+                    inputName.value = ''; // Limpiar el input del nombre
+                    inputText.value = ''; // Limpiar el input del secreto
+                }
+            });
+
+            clearButton.addEventListener('click', function() {
+                clearContent();
+            });
+
+            // Cargar contenido almacenado al inicio
+            loadContent();
+        });
+    </script>
+</body>
+</html>
